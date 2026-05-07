@@ -1,14 +1,16 @@
-export async function fetchPokemon() { 
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-    const data = await response.json();
+export async function fetchPokemon() {
+  const res = await fetch(
+    "https://pokeapi.co/api/v2/pokemon?limit=151"
+  );
 
-    return data.results.map((p,i) => {
-        name : capaitalze(p.name),
-        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`
-    });
+  const data = await res.json();
 
-    function capaitalze(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
+  return data.results.map((pokemon, index) => ({
+    name:
+      pokemon.name.charAt(0).toUpperCase() +
+      pokemon.name.slice(1),
 
-        }
+    image:
+      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
+  }));
 }
