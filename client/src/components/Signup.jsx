@@ -40,6 +40,7 @@ export default function Signup({ goToLogin }) {
     setMessageType("success");
     setUsername("");
     setPassword("");
+    goToLogin();
   }
 
   return (
