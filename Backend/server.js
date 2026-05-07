@@ -2,12 +2,13 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const clientDist = path.join(__dirname, '..', 'client', 'dist');
 
 // Serve React build in production
-app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(clientDist));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+  res.sendFile(path.join(clientDist, 'index.html'));
 });
 
 app.listen(3000, () => {
